@@ -2,6 +2,7 @@ from decouple import config
 import dj_database_url
 from pathlib import Path
 import os
+import cloudinary
 
 
 
@@ -34,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders', 
+    'cloudinary',
+    'cloudinary_storage',
 
     #apps
     'core',
@@ -166,3 +169,13 @@ JAZZMIN_SETTINGS = {
     "theme": "cosmo",  # Bootswatch theme use kar sakte ho (flatly, cyborg, cosmo etc.)
 
 }
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+cloudinary.config(
+  cloud_name=config("CLOUD_NAME"),
+  api_key=config("API_KEY"),
+  api_secret=config("API_SECRET")
+)
+
