@@ -11,12 +11,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dummy-secret-key')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-CORS_ALLOWED_ORIGINS = ["*"]  # Vite server
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["*",]
+ALLOWED_HOSTS = ["",]
 
 
 # Application definition
