@@ -1,22 +1,25 @@
-
+from decouple import config
 import dj_database_url
 from pathlib import Path
 import os
+
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # cors
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dummy-secret-key')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='').split(',')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["",]
+ALLOWED_HOSTS = [""]
 
 
 # Application definition
@@ -74,11 +77,10 @@ WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
+        default=config('DATABASE_URL'),
+        conn_max_age=600
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
