@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
+from cloudinary.models import CloudinaryField
 
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='projects/')
+    image = CloudinaryField('image', folder='projects')  # ✅ yahan folder set kar do
     github_link = models.URLField(blank=True)
     live_link = models.URLField(blank=True)
     slug = models.SlugField(unique=True, blank=True, max_length=200)
