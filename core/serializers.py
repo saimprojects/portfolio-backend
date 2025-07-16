@@ -5,6 +5,8 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
+    def get_image(self, obj):
+        return obj.image.url     
 
 
 class BlogSerializer(serializers.ModelSerializer):
