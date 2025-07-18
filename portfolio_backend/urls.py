@@ -5,7 +5,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('core.urls')), 
+    path('api/', include('core.urls')),  # Ensure this is correct based on your project structure
+    path('ckeditor5/', include('django_ckeditor_5.urls')),  # Add this line for CKEditor 5
 ]
 
 # Serve media files during development
