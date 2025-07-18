@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'ckeditor',
+    'ckeditor_uploader',
 
     #apps
     'core',
@@ -179,3 +180,4 @@ cloudinary.config(
   api_secret=config("API_SECRET")
 )
 
+CKEDITOR_UPLOAD_PATH = "uploads/"

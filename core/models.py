@@ -2,12 +2,12 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
 from cloudinary.models import CloudinaryField
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
-    description = RichTextField()
+    description = RichTextUploadingField()
     image = CloudinaryField('image', folder='projects') 
     github_link = models.URLField(blank=True)
     live_link = models.URLField(blank=True)
@@ -25,7 +25,7 @@ class Project(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=200)
-    content = RichTextField()
+    content = RichTextUploadingField()
 
     published_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, blank=True, max_length=200)
