@@ -1,38 +1,22 @@
 from django.contrib import admin
 from .models import Project, Blog, Skill, Contact, Service
-from django import forms
+from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
+from django.db import models
 
-# Project Form
-class ProjectAdminForm(forms.ModelForm):
-    description = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Project
-        fields = '__all__'
-
-# Blog Form
-class BlogAdminForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Blog
-        fields = '__all__'
-
-# Project Admin
 class ProjectAdmin(admin.ModelAdmin):
-    form = ProjectAdminForm
+    formfield_overrides = {
+        RichTextField: {'widget': CKEditorWidget()},
+    }
 
-# Blog Admin
 class BlogAdmin(admin.ModelAdmin):
-    form = BlogAdminForm
+    formfield_overrides = {
+        RichTextField: {'widget': CKEditorWidget()},
+    }
 
-# Service Admin (jo pehle tha wo same rakh lo)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('title', 'price', 'created_at')
 
-
-# Register Models
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Skill)
