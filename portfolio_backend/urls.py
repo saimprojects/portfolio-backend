@@ -5,9 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('core.urls')),  # ✅ This is enough
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-
+    path('api/', include('core.urls')), 
 ]
 
 # Serve media files during development

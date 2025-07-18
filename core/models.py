@@ -1,14 +1,12 @@
 from django.db import models
 from django.utils.text import slugify
-from django.contrib.postgres.fields import ArrayField
 from cloudinary.models import CloudinaryField
-from ckeditor_uploader.fields import RichTextUploadingField
-
+from django_ckeditor_5.fields import CKEditor5Field
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
-    description = RichTextUploadingField()
-    image = CloudinaryField('image', folder='projects') 
+    description = CKEditor5Field('Description', config_name='extends')
+    image = CloudinaryField('image', folder='projects')
     github_link = models.URLField(blank=True)
     live_link = models.URLField(blank=True)
     slug = models.SlugField(unique=True, blank=True, max_length=200)
@@ -25,8 +23,7 @@ class Project(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=200)
-    content = RichTextUploadingField()
-
+    content = CKEditor5Field('Content', config_name='extends')
     published_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, blank=True, max_length=200)
 
@@ -43,7 +40,6 @@ class Blog(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=50)
     proficiency = models.IntegerField()  # 1-100%
-   
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)
@@ -56,7 +52,7 @@ class Contact(models.Model):
 
 class Service(models.Model):
     title = models.CharField(max_length=100)
-    features = models.TextField(blank=True)  # Wapas TextField
+    features = models.TextField(blank=True)
     price = models.CharField(max_length=50)  # e.g., "$150", "Starting from $1200"
     created_at = models.DateTimeField(auto_now_add=True)
 
