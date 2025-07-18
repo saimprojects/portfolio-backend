@@ -12,9 +12,11 @@ colorama==0.4.6
 Deprecated==1.2.18
 dj-database-url==3.0.1
 Django==5.2.1
+django-ckeditor==6.7.3
 django-cloudinary-storage==0.3.0
 django-cors-headers==4.7.0
 django-jazzmin==3.0.1
+django-js-asset==3.1.2
 django-rest-framework==0.1.0
 djangorestframework==3.16.0
 djangorestframework_simplejwt==5.5.0

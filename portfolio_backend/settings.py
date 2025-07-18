@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'corsheaders', 
     'cloudinary',
     'cloudinary_storage',
+    'ckeditor',
 
     #apps
     'core',
